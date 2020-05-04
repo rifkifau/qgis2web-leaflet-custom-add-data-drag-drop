@@ -2,7 +2,7 @@
 
 ### Percobaan implementasi fitur "Tambah Data" dari web http://leaflet.calvinmetcalf.com ke dalam output webmap dari plugin QGIS2Web di QGIS.
 
-> Kurang lebih berikut adalah script dan bibrary yang diedit dan ditambahkan:
+> Kurang lebih berikut adalah script dan library yang diedit dan ditambahkan:
 #### Directory:
     .
     ├── index.html              
