@@ -1,8 +1,9 @@
-# Qgis2web Leaflet Custom: Add Data (Drag and Drop)
+## Qgis2web Leaflet Custom: Add Data (Drag and Drop)
 
-## Percobaan implementasi fitur "Tambah Data" dari web http://leaflet.calvinmetcalf.com ke dalam output webmap plugin QGIS2Web di QGIS.
+### Percobaan implementasi fitur "Tambah Data" dari web http://leaflet.calvinmetcalf.com ke dalam output webmap dari plugin QGIS2Web di QGIS.
 
 > Kurang lebih berikut adalah script dan bibrary yang diedit dan ditambahkan:
+#### Directory:
     .
     ├── index.html              
     ├── script.js              
