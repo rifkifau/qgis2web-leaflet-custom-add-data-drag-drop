@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <title>Sample WebGIS Spasialkan.com</title>
+        <meta name="description"  content="Peta WebGIS Interaktif Peta Batas Administrasi Provinsi Indonesia - Drag and Drop Layers shp atau geojson" />
+        <meta name="keywords"  content="peta interaktif, webgis, visualisasi data, administrasi, provinsi indonesia, tambah layer, shapefile, shp, geojson" />
+        <link rel="icon" href="https://spasialkan.com/wp-content/uploads/2018/03/Logo-Spasialkan-2018-Peta-Digital-dan-Webgis-Yogyakarta-Indonesia.png" type="image/x-icon"/>
+        <link rel="shortcut icon" href="https://spasialkan.com/wp-content/uploads/2018/03/Logo-Spasialkan-2018-Peta-Digital-dan-Webgis-Yogyakarta-Indonesia.png" type="image/x-icon"/>
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+
+        <!-- EDITAN: Tambahan source -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        
+        /* EDITAN: Tambahan Style */
+        .upStuff{
+          display:none;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/indonesia_prov_simplify_0.js"></script>
+
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-19.1478631954,93.8208244325],[14.215711015,142.171244812]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+        
+        L.control.locate().addTo(map);
+        var measureControl = new L.Control.Measure({
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        var bounds_group = new L.featureGroup([]);
+        var basemap0 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            maxZoom: 28
+        });
+        basemap0.addTo(map);
+        function setBounds() {
+        }
+        function pop_indonesia_prov_simplify_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">NMPRV</th>\
+                        <td>' + (feature.properties['NMPRV'] !== null ? Autolinker.link(String(feature.properties['NMPRV'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">NMPKP</th>\
+                        <td>' + (feature.properties['NMPKP'] !== null ? Autolinker.link(String(feature.properties['NMPKP'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">NMKWS</th>\
+                        <td>' + (feature.properties['NMKWS'] !== null ? Autolinker.link(String(feature.properties['NMKWS'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">KDPRV</th>\
+                        <td>' + (feature.properties['KDPRV'] !== null ? Autolinker.link(String(feature.properties['KDPRV'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">KDPKP</th>\
+                        <td>' + (feature.properties['KDPKP'] !== null ? Autolinker.link(String(feature.properties['KDPKP'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">KDKWS</th>\
+                        <td>' + (feature.properties['KDKWS'] !== null ? Autolinker.link(String(feature.properties['KDKWS'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Leng'] !== null ? Autolinker.link(String(feature.properties['Shape_Leng'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Area'] !== null ? Autolinker.link(String(feature.properties['Shape_Area'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['KDPRV2'] !== null ? Autolinker.link(String(feature.properties['KDPRV2'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_indonesia_prov_simplify_0_0() {
+            return {
+                pane: 'pane_indonesia_prov_simplify_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(17,96,207,1.0)',
+            }
+        }
+        map.createPane('pane_indonesia_prov_simplify_0');
+        map.getPane('pane_indonesia_prov_simplify_0').style.zIndex = 400;
+        map.getPane('pane_indonesia_prov_simplify_0').style['mix-blend-mode'] = 'normal';
+        var layer_indonesia_prov_simplify_0 = new L.geoJson(json_indonesia_prov_simplify_0, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_indonesia_prov_simplify_0',
+            onEachFeature: pop_indonesia_prov_simplify_0,
+            style: style_indonesia_prov_simplify_0_0,
+        });
+        bounds_group.addLayer(layer_indonesia_prov_simplify_0);
+        map.addLayer(layer_indonesia_prov_simplify_0);
+        var baseMaps = {};
+        // EDITAN: set variable 'lc', biar tidak perlu mengubah script bawaan dari webgis draganddrop
+        var lc = L.control.layers(baseMaps,{'<img src="legend/indonesia_prov_simplify_0.png" /> Admin Provinsi': layer_indonesia_prov_simplify_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        </script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122965748-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-122965748-1');
+        </script>
+
+        <!-- EDITAN: Tambahan Source -->
+        <script src='jam/require.js'></script>
+        <script src='js/leaflet.spin.js'></script>
+        <script src='js/mapSetup.js'></script>
+        <script src='script.js'></script>
+    </body>
+</html>
