@@ -11,7 +11,8 @@
         <meta name="keywords"  content="peta interaktif, webgis, visualisasi data, administrasi, provinsi indonesia, tambah layer, shapefile, shp, geojson" />
         <link rel="icon" href="https://spasialkan.com/wp-content/uploads/2018/03/Logo-Spasialkan-2018-Peta-Digital-dan-Webgis-Yogyakarta-Indonesia.png" type="image/x-icon"/>
         <link rel="shortcut icon" href="https://spasialkan.com/wp-content/uploads/2018/03/Logo-Spasialkan-2018-Peta-Digital-dan-Webgis-Yogyakarta-Indonesia.png" type="image/x-icon"/>
-        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/L.Control.Locate.min.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
 
@@ -63,8 +64,8 @@
         });
         measureControl.addTo(map);
         var bounds_group = new L.featureGroup([]);
-        var basemap0 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+        var basemap0 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors,<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
             maxZoom: 28
         });
         basemap0.addTo(map);
