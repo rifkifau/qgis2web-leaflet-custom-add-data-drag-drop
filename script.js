@@ -1,5 +1,8 @@
-// EDITAN: Ubah penggunaan variable "m" ke "map", mengikuti settingan QGIS2web
-
+/* EDITAN: 
+1. Ubah penggunaan variable "m" ke "map", mengikuti settingan QGIS2web
+2. Hapus scrollWheelZoomap
+3. Ubah tampilan tombol upload
+*/
 require(['catiline'], function(cw) {
     var worker = cw({
         init: function(scope) {
@@ -131,9 +134,15 @@ require(['catiline'], function(cw) {
     }
 
     function makeDone(div, upButton) {
-        var doneButton = L.DomUtil.create('button', "btn  btn-primary span3", div);
+        var doneButton = L.DomUtil.create('button', "btn  btn-primary", div);
         doneButton.type = "button";
-        doneButton.innerHTML = "Upload File<br />(or Drag and Drop Anywhere)<br />GeoJSON, TopoJSON, or Zipped Shapefile Work";
+        doneButton.innerHTML = '<span class="fa fa-upload"></span>';
+        doneButton.addEventListener("mouseover", function() {   
+            doneButton.innerHTML = 'Upload File (or Drag and Drop Anywhere)<br />GeoJSON, TopoJSON, or Zipped Shapefile';
+          });
+        doneButton.addEventListener("mouseout", function() {   
+            doneButton.innerHTML = '<span class="fa fa-upload"></span>';
+        });
         L.DomEvent.addListener(doneButton, "click", function() {
             upButton.click();
         });
@@ -146,11 +155,6 @@ require(['catiline'], function(cw) {
         var upButton = makeUp(div, handleFile);
         setWorkerEvents()
         var doneButton = makeDone(div, upButton);
-
-
-
-
-
 
         var dropbox = document.getElementById("map");
         dropbox.addEventListener("dragenter", dragenter, false);
