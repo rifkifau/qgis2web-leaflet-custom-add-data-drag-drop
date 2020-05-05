@@ -20,5 +20,6 @@
 #### Akses hasil percobaan di: https://rifkifau.github.io/qgis2web-leaflet-custom-add-data-drag-drop
 
 > Screenshot: 
-![image](https://user-images.githubusercontent.com/24805357/80950698-8fbf5480-8e20-11ea-84c6-4d8e2a1d0aea.png)
+![image](https://user-images.githubusercontent.com/24805357/81037185-fcdbf400-8ecb-11ea-86dc-32860b54e4ff.png)
+
 
