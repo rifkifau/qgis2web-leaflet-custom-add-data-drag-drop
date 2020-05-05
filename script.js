@@ -157,13 +157,13 @@ require(['catiline'], function(cw) {
         dropbox.addEventListener("dragover", dragover, false);
         dropbox.addEventListener("drop", drop, false);
         dropbox.addEventListener("dragleave", function() {
-            map.scrollWheelZoomap.enable();
+//             map.scrollWheelZoomap.enable();
         }, false);
 
         function dragenter(e) {
             e.stopPropagation();
             e.preventDefault();
-            map.scrollWheelZoomap.disable();
+//             map.scrollWheelZoomap.disable();
         }
 
         function dragover(e) {
@@ -174,7 +174,7 @@ require(['catiline'], function(cw) {
         function drop(e) {
             e.stopPropagation();
             e.preventDefault();
-            map.scrollWheelZoomap.enable();
+//             map.scrollWheelZoomap.enable();
             var dt = e.dataTransfer;
             var files = dt.files;
 
