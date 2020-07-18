@@ -15,8 +15,10 @@
         <link rel="stylesheet" href="css/L.Control.Locate.min.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
+        
 
         <!-- EDITAN: Tambahan source -->
+        <link rel="stylesheet" href="css/leaflet.groupedlayercontrol.css">
         <link href="css/bootstrap.css" rel="stylesheet">
         <style>
         html, body, #map {
@@ -140,7 +142,22 @@
         map.addLayer(layer_indonesia_prov_simplify_0);
         var baseMaps = {};
         // EDITAN: set variable 'lc', biar tidak perlu mengubah script bawaan dari webgis draganddrop
-        var lc = L.control.layers(baseMaps,{'<img src="legend/indonesia_prov_simplify_0.png" /> Admin Provinsi': layer_indonesia_prov_simplify_0,},{collapsed:false}).addTo(map);
+//         var lc = L.control.layers(baseMaps,{'<img src="legend/indonesia_prov_simplify_0.png" /> Admin Provinsi': layer_indonesia_prov_simplify_0,},{collapsed:false}).addTo(map);
+        // Penambahan daftar layer
+        var groupedOverlays = {
+          "Batas Administrasi": {
+            '<img src="legend/indonesia_prov_simplify_0.png" /> Admin Provinsi': layer_indonesia_prov_simplify_0,
+          },
+          "Data Dasar": {
+          },
+          "Layers Data": {
+          },
+        };
+
+        var lc = L.control.groupedLayers(baseMaps, groupedOverlays, {
+          collapsed: true
+        }).addTo(map);
+            
         setBounds();
         </script>
 
@@ -154,6 +171,7 @@
         </script>
 
         <!-- EDITAN: Tambahan Source -->
+        <script src="js/leaflet.groupedlayercontrol.js"></script>
         <script src='jam/require.js'></script>
         <script src='js/leaflet.spin.js'></script>
         <script src='js/mapSetup.js'></script>
